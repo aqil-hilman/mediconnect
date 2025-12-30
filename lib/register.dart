@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mediconnect/login.dart';
-import 'package:mediconnect/profile.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

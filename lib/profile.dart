@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mediconnect/first_page.dart';
-import 'package:mediconnect/home.dart';
+import 'package:mediconnect/appointment.dart';
+import 'package:mediconnect/current_appointment.dart';
+import 'package:mediconnect/medical_history.dart';
+import 'package:mediconnect/chat.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -42,6 +45,24 @@ class _ProfilePageState extends State<ProfilePage> {
             setState(() {
               currentPageIndex = index;
             });
+            
+            // Navigation logic
+            if (index == 1) {
+              // For Appointment button, navigate to AppointmentPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AppointmentPage()),
+              );
+              // Reset index to stay on Home (index 0)
+              Future.delayed(Duration.zero, () {
+                setState(() {
+                  currentPageIndex = 0;
+                });
+              });
+            } else if (index == 2) {
+              // For Profile, stay on current profile page (index 2)
+              currentPageIndex = 2;
+            }
           },
           indicatorColor: const Color(0xFF105EE6),
           selectedIndex: currentPageIndex,
@@ -149,27 +170,35 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(height: 24),
                       Row(
                         children: [
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  offset: Offset(1, 3),
-                                  blurRadius: 10,
-                                  spreadRadius: 1,
-                                ),
-                              ]
-                            ),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.calendar_month,
-                                  size: 120,
-                                  color: Colors.blueAccent,
+                          // MAKE APPOINTMENT BUTTON
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const AppointmentPage()),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    offset: Offset(1, 3),
+                                    blurRadius: 10,
+                                    spreadRadius: 1,
+                                  ),
+                                ]
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.calendar_month,
+                                    size: 120,
+                                    color: Colors.blueAccent,
                                   ),
                                   Text(
                                     'Make Appointment',
@@ -177,31 +206,40 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: Colors.blueAccent,
                                       fontWeight: FontWeight.bold
                                     ),
-                                    )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  offset: Offset(1, 4),
-                                  blurRadius: 10,
-                                  spreadRadius: 2,
-                                ),
-                              ]
-                            ),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.calendar_view_day,
-                                  size: 110,
-                                  color: Colors.blueAccent,
+                          // CHECK APPOINTMENT BUTTON
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const CurrentAppointmentPage()),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    offset: Offset(1, 4),
+                                    blurRadius: 10,
+                                    spreadRadius: 2,
+                                  ),
+                                ]
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.calendar_view_day,
+                                    size: 110,
+                                    color: Colors.blueAccent,
                                   ),
                                   Text(
                                     'Check\nAppointment',
@@ -210,35 +248,44 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: Colors.blueAccent,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                    )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ]
                       ),
                       Row(
                         children: [
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  offset: Offset(1, 4),
-                                  blurRadius: 10,
-                                  spreadRadius: 2,
-                                ),
-                              ]
-                            ),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.history,
-                                  size: 120,
-                                  color: Colors.blueAccent,
+                          // MEDICAL HISTORY BUTTON
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MedicalHistoryPage()),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    offset: Offset(1, 4),
+                                    blurRadius: 10,
+                                    spreadRadius: 2,
+                                  ),
+                                ]
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.history,
+                                    size: 120,
+                                    color: Colors.blueAccent,
                                   ),
                                   Text(
                                     'Medical History',
@@ -246,31 +293,40 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: Colors.blueAccent,
                                       fontWeight: FontWeight.bold
                                     ),
-                                    )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.all(16),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  offset: Offset(1, 4),
-                                  blurRadius: 10,
-                                  spreadRadius: 2,
-                                ),
-                              ]
-                            ),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.chat_bubble_outline_outlined,
-                                  size: 120,
-                                  color: Colors.blueAccent,
+                          // CHAT BUTTON
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ChatPage()),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(16),
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(24),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    offset: Offset(1, 4),
+                                    blurRadius: 10,
+                                    spreadRadius: 2,
+                                  ),
+                                ]
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.chat_bubble_outline_outlined,
+                                    size: 120,
+                                    color: Colors.blueAccent,
                                   ),
                                   Text(
                                     'Chat',
@@ -278,8 +334,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: Colors.blueAccent,
                                       fontWeight: FontWeight.bold
                                     ),
-                                    )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ]
@@ -293,7 +350,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           ),
 
-        // Appointment
+        // Appointment - Empty container (will navigate to AppointmentPage instead)
         Container(
           width: double.infinity,
           height: double.infinity,
@@ -310,7 +367,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
 
         //==============================
-        // Home Page        
+        // Profile Page        
         //==============================
         Container(
           width: double.infinity,

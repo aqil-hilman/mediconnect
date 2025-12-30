@@ -1,5 +1,12 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:mediconnect/first_page.dart';
+import 'package:mediconnect/profile.dart'; // Add this import
+import 'package:mediconnect/appointment.dart';
+import 'package:mediconnect/current_appointment.dart';
+import 'package:mediconnect/medical_history.dart';
+import 'package:mediconnect/chat.dart';
+//import 'package:mediconnect/secure_chat.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,8 +17,17 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const SplashScreen(),
+        '/home': (context) => const ProfilePage(), // Profile page is your home
+        '/appointment': (context) => const AppointmentPage(),
+        '/current_appointment': (context) => const CurrentAppointmentPage(),
+        '/medical_history': (context) => const MedicalHistoryPage(),
+        '/chat': (context) => const ChatPage(),
+        //'/secure_chat': (context) => const SecureChatPage(),
+      },
     );
   }
 }
@@ -28,17 +44,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      /*if(mounted){
-          Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const FirstPage()),
-        );*/
-        
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const FirstPage()),
       );
-      
     });
   }
   
